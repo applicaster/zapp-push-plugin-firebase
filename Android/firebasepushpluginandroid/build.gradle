@@ -21,13 +21,14 @@ android {
     }
 
     buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
+
         debug {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.txt'
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.txt'
         }
     }
 
@@ -38,6 +39,22 @@ android {
     packagingOptions {
         exclude 'META-INF/rxjava.properties'
     }
+
+    publishNonDefault true
+}
+
+repositories {
+    jcenter()
+    mavenCentral()
+    maven { url 'https://maven.google.com' }
+    maven { url 'https://jitpack.io' }
+    maven {
+        credentials {
+            username System.getenv("MAVEN_USERNAME")
+            password System.getenv("MAVEN_PASSWORD")
+        }
+        url 'https://dl.bintray.com/applicaster-ltd/maven'
+    }
 }
 
 dependencies {
@@ -47,6 +64,24 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.6.1'
     testImplementation 'junit:junit:4.12'
 
+}
+
+buildscript {
+    ext.applicaster_version = '2.32.37'
+    ext.kotlin_version = '1.3.10'
+
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.2.1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
+        classpath "org.jetbrains.dokka:dokka-android-gradle-plugin:0.9.17"
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
+    }
 }
 
 
@@ -95,7 +130,9 @@ publishing {
                 version versionFromTag
 
                 artifactId ARTIFACT_ID
-                artifact "build/outputs/aar/" + ARTIFACT_FILE_NAME + "-release.aar"
+                artifact ("build/outputs/aar/${project.getName()}-release.aar") {
+                    builtBy assembleRelease
+                }
                 artifact androidJavadocsJar
                 artifact androidSourcesJar
                 pom.withXml {
@@ -203,10 +240,6 @@ task androidSourcesJar(type: Jar) {
 
 task androidJar(type: Jar) {
     from 'build/intermediates/classes/release'
-}
-
-task wrapper(type: Wrapper) {
-    gradleVersion = '4.5.1'
 }
 
 artifacts {
