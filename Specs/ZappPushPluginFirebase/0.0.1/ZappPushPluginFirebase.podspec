@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
     s.requires_arc = true
     s.swift_version = '4.2'
     s.static_framework = true
-    s.source_files = 'ZappPushPluginFirebase/**/*.{swift}'
+    s.source_files = 'iOS/ZappPushPluginFirebase/**/*.{swift}'
 
     s.xcconfig =  { 'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES',
         'FRAMEWORK_SEARCH_PATHS' => '$(inherited)',

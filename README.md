@@ -32,6 +32,7 @@ A Push Provider plugin is used to enable the app owner to send push notification
 
 * The plugin classes will be found under `Pods`, in the `Development Pods` folder. 
 
+* Setup proper bundle ID. Configure Firebase Console. Add valid GoogleServices.plist
 
 ## Related Links
 
