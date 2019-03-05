@@ -26,5 +26,24 @@
   "min_zapp_sdk": "10.0.4",
   "deprecated_since_zapp_sdk": "",
   "unsupported_since_zapp_sdk": "",
-  "react_native": false
+  "react_native": false,
+  "extra_dependencies": [
+    {
+      "NotificationServiceExtension": {
+        "ZappPushPluginFirebase/FirebaseAppExtensions": "'~> 0.0.1'"
+      }
+    }
+  ],
+  "custom_configuration_fields": [
+    {"type":"checkbox",
+      "key":"allow_enterprise_rich_push_notifications",
+      "default":1
+    },
+    {
+      "type": "uploader",
+      "key": "notification_extension_provisioning_profile",
+      "tooltip_text": "Upload Notification Extension Provisioning Profile for Store builds  only"
+    }
+  ]
 }
+
