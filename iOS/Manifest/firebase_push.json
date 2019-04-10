@@ -7,7 +7,7 @@
     ]
   },
   "dependency_repository_url": [
-  	"https://github.com/applicaster/ZappPushPluginFirebase-iOS.git"
+  	"https://github.com/applicaster/zapp-push-plugin-firebase.git"
   	],
   "platform": "ios",
   "author_name": "Egor Brel",
