@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
     s.description      = <<-DESC
                           FirebasePushPlugin for Zapp iOS.
                           DESC
-    s.homepage         = 'https://github.com/applicaster/ZappPushPluginFirebase-iOS'
+    s.homepage         = 'https://github.com/applicaster/zapp-push-plugin-firebase.git'
     s.license          = 'CMPS'
     s.author           = { 'Egor Brel' => 'brel@scand.com' }
     s.source           = { :git => 'https://github.com/applicaster/zapp-push-plugin-firebase.git', :tag => s.version.to_s }
