@@ -13,6 +13,7 @@
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
+		B62C8B9D222537E0004D8702 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B62C8B9C222537E0004D8702 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,8 @@
 		A688D46BB16FD46D7C6F0664 /* Pods_ZappPushPluginFirebase_iOS_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZappPushPluginFirebase_iOS_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A690C8EE3B054676387251FF /* Pods-ZappPushPluginFirebase-iOS_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZappPushPluginFirebase-iOS_Example.debug.xcconfig"; path = "Target Support Files/Pods-ZappPushPluginFirebase-iOS_Example/Pods-ZappPushPluginFirebase-iOS_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		AAAF2AF5F7A3E28B267FB0EE /* Pods-ZappPushPluginFirebase-iOS_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZappPushPluginFirebase-iOS_Tests.release.xcconfig"; path = "Target Support Files/Pods-ZappPushPluginFirebase-iOS_Tests/Pods-ZappPushPluginFirebase-iOS_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		B62C8B9C222537E0004D8702 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B6D0F35B22243F95006174FA /* ZappPushPluginFirebase-iOS_Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ZappPushPluginFirebase-iOS_Example.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +59,7 @@
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
+				B6D0F35B22243F95006174FA /* ZappPushPluginFirebase-iOS_Example.entitlements */,
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
 				607FACD21AFB9204008FA782 /* ZappPushPluginFirebase-iOS */,
 				607FACD11AFB9204008FA782 /* Products */,
@@ -88,6 +92,7 @@
 		607FACD31AFB9204008FA782 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B62C8B9C222537E0004D8702 /* GoogleService-Info.plist */,
 				607FACD41AFB9204008FA782 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -182,6 +187,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B62C8B9D222537E0004D8702 /* GoogleService-Info.plist in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
@@ -384,10 +390,10 @@
 				CODE_SIGN_ENTITLEMENTS = "ZappPushPluginFirebase-iOS_Example.entitlements";
 				DEVELOPMENT_TEAM = REC5WH92M6;
 				INFOPLIST_FILE = "ZappPushPluginFirebase-iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = com.applicaster.ZappPushPluginFirebase;
+				PRODUCT_BUNDLE_IDENTIFIER = com.acbm.mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
@@ -403,10 +409,10 @@
 				CODE_SIGN_ENTITLEMENTS = "ZappPushPluginFirebase-iOS_Example.entitlements";
 				DEVELOPMENT_TEAM = REC5WH92M6;
 				INFOPLIST_FILE = "ZappPushPluginFirebase-iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = com.applicaster.ZappPushPluginFirebase;
+				PRODUCT_BUNDLE_IDENTIFIER = com.acbm.mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
