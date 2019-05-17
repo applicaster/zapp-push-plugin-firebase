@@ -35,13 +35,56 @@ open class APPushProviderFirebase: ZPPushProvider {
             UIApplication.shared.registerUserNotificationSettings(settings)
         }
         UIApplication.shared.registerForRemoteNotifications()
+        
         return true
+    }
+    
+    open func addTagsToDevice(_ tags: [String]?, completion: @escaping (_ success: Bool ,_ tags: [String]?) -> Void) {
+        guard let tags = tags else {
+            completion(true, nil)
+            return
+        }
+        
+        var success = true
+        let dispatchGroup = DispatchGroup()
+        for tag in tags {
+            dispatchGroup.enter()
+            Messaging.messaging().subscribe(toTopic: tag) { (error) in
+                success = success && (error == nil)
+                dispatchGroup.leave()
+            }
+        }
+        
+        dispatchGroup.notify(queue: .main) {
+            completion(success, tags)
+        }
+    }
+    
+    open func removeTagsToDevice(_ tags: [String]?, completion: @escaping (_ success: Bool, _ tags: [String]?) -> Void) {
+        guard let tags = tags else {
+            completion(true, nil)
+            return
+        }
+        
+        var success = true
+        let dispatchGroup = DispatchGroup()
+        for tag in tags {
+            dispatchGroup.enter()
+            Messaging.messaging().unsubscribe(fromTopic: tag) { (error) in
+                success = success && (error == nil)
+                dispatchGroup.leave()
+            }
+        }
+        
+        dispatchGroup.notify(queue: .main) {
+            completion(success, tags)
+        }
     }
 }
 
 extension APPushProviderFirebase : MessagingDelegate {
     
     open func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
-        NSLog("Firebase registration token %@", fcmToken); //NSLog instead of print so it can be visualized without XCode
+        NSLog("Firebase registration token %@", fcmToken) //NSLog instead of print so it can be visualized without XCode
     }
 }
