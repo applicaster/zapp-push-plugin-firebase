@@ -50,7 +50,7 @@ open class APPushProviderFirebase: ZPPushProvider {
         for tag in tags {
             dispatchGroup.enter()
             Messaging.messaging().subscribe(toTopic: tag) { (error) in
-                success = success && error == nil
+                success = success && (error == nil)
                 dispatchGroup.leave()
             }
         }
