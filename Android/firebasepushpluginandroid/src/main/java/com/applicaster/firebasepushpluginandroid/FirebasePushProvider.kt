@@ -45,7 +45,13 @@ class FirebasePushProvider : PushContract {
         tag: MutableList<String>?,
         pushTagRegistrationListener: PushTagRegistrationI?
     ) {
+        //We should iterate through all tags calling this method. And once all methods returned, call the pushTagRegistrationListener.
+        //We should use couritines fore that
 
+        FirebaseMessaging.getInstance().subscribeToTopic(topic).addOnCompleteListener { task ->
+                    //cont.resume(task.isSuccessful)
+                    Log.d(TAG, "isSuccessful " + task.isSuccessful)
+                }
     }
 
     override fun setPluginParams(params: MutableMap<Any?, Any?>?) {
@@ -57,7 +63,12 @@ class FirebasePushProvider : PushContract {
         tag: MutableList<String>?,
         pushTagRegistrationListener: PushTagRegistrationI?
     ) {
-
+        //We should iterate through all tags calling this method. And once all methods returned, call the pushTagRegistrationListener.
+        //We should use couritines fore that
+        FirebaseMessaging.getInstance().unsubscribeFromTopic(topic).addOnCompleteListener { task ->
+                    //cont.resume(task.isSuccessful)
+                    Log.d(TAG, "isSuccessful " + task.isSuccessful)
+                }
     }
 
     override fun getTagList(context: Context?, listener: PushTagLoadedI?) {
