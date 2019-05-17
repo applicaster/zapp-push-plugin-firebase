@@ -71,7 +71,7 @@ open class APPushProviderFirebase: ZPPushProvider {
         for tag in tags {
             dispatchGroup.enter()
             Messaging.messaging().unsubscribe(fromTopic: tag) { (error) in
-                success = success && error == nil
+                success = success && (error == nil)
                 dispatchGroup.leave()
             }
         }
