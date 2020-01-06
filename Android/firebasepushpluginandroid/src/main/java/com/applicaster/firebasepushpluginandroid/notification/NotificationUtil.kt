@@ -7,7 +7,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.media.RingtoneManager
 import android.net.Uri
-import android.support.v4.app.NotificationCompat
+import androidx.core.app.NotificationCompat
 import com.applicaster.util.StringUtil
 import com.bumptech.glide.Glide
 import com.applicaster.firebasepushpluginandroid.FIREBASE_DEFAULT_CHANNEL_ID

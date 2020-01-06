@@ -1,6 +1,6 @@
 package com.applicaster.firebasepushpluginandroid.services
 
-import android.support.v4.app.NotificationManagerCompat
+import androidx.core.app.NotificationManagerCompat
 import android.util.Log
 import com.applicaster.firebasepushpluginandroid.factory.DefaultNotificationFactory
 import com.applicaster.firebasepushpluginandroid.push.PushMessage
@@ -16,7 +16,7 @@ class APMessagingService : FirebaseMessagingService() {
      *
      * @param remoteMessage Object representing the message received from Firebase Cloud Messaging.
      */
-    override fun onMessageReceived(remoteMessage: RemoteMessage?) {
+    override fun onMessageReceived(remoteMessage: RemoteMessage) {
         super.onMessageReceived(remoteMessage)
 
         // There are two types of messages data messages and notification messages. Data messages are handled
@@ -51,9 +51,9 @@ class APMessagingService : FirebaseMessagingService() {
      * @param msgId of the upstream message sent using send(RemoteMessage)
      * @param exception description of the error, typically a {@see SendException}
      */
-    override fun onSendError(msgId: String?, exception: Exception?) {
+    override fun onSendError(msgId: String, exception: Exception) {
         super.onSendError(msgId, exception)
-        exception?.printStackTrace()
+        exception.printStackTrace()
         Log.e(TAG, "Received error: $msgId")
     }
 

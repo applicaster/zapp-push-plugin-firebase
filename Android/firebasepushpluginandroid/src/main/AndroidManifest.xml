@@ -10,7 +10,7 @@
          </intent-filter>
      </service>
 
-     <service android:name="com.applicaster.firebasepushpluginandroid.services.APInstanseIdService">
+     <service android:name="com.applicaster.firebasepushpluginandroid.services.APInstanceIdService">
          <intent-filter android:priority="-1">
              <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
          </intent-filter>
