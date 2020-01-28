@@ -9,13 +9,16 @@ import com.applicaster.plugin_manager.push_plugin.helper.PushPluginsType
 import com.applicaster.plugin_manager.push_plugin.listeners.PushTagLoadedI
 import com.applicaster.plugin_manager.push_plugin.listeners.PushTagRegistrationI
 import com.google.firebase.messaging.FirebaseMessaging
-import kotlinx.coroutines.experimental.async
-import kotlinx.coroutines.experimental.launch
-import kotlin.coroutines.experimental.suspendCoroutine
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
+
 
 class FirebasePushProvider : PushContract {
 
-    private val TAG = FirebasePushProvider::class.java.canonicalName
+    private val TAG = FirebasePushProvider::class.java.simpleName
 
     private var pluginsParamsMap: MutableMap<*, *>? = null
 
@@ -44,11 +47,13 @@ class FirebasePushProvider : PushContract {
     }
 
     override fun addTagToProvider(
-        context: Context?,
-        tag: MutableList<String>?,
-        pushTagRegistrationListener: PushTagRegistrationI?
+            context: Context?,
+            tag: MutableList<String>?,
+            pushTagRegistrationListener: PushTagRegistrationI?
     ) {
-           launch{ registerAll(tag, pushTagRegistrationListener)}
+        GlobalScope.launch(Dispatchers.Main) {
+            registerAll(tag, pushTagRegistrationListener)
+        }
     }
 
 
@@ -57,7 +62,9 @@ class FirebasePushProvider : PushContract {
             tag: MutableList<String>?,
             pushTagRegistrationListener: PushTagRegistrationI?
     ) {
-        launch{ unregisterAll(tag, pushTagRegistrationListener)}
+        GlobalScope.launch(Dispatchers.Main) {
+            unregisterAll(tag, pushTagRegistrationListener)
+        }
     }
 
     override fun setPluginParams(params: MutableMap<Any?, Any?>?) {
@@ -80,7 +87,7 @@ class FirebasePushProvider : PushContract {
                                     pushTagRegistrationListener: PushTagRegistrationI?){
         var totalResult = true;
         tag?.forEach {
-            var result = async{register(it) }.await()
+            var result = register(it)
             totalResult = totalResult && result
         }
         pushTagRegistrationListener?.pushRregistrationTagComplete(PushPluginsType.applicaster, totalResult)
@@ -94,10 +101,10 @@ class FirebasePushProvider : PushContract {
             }
 
     suspend private fun unregisterAll(tag: MutableList<String>?,
-                                    pushTagRegistrationListener: PushTagRegistrationI?){
+                                      pushTagRegistrationListener: PushTagRegistrationI?){
         var totalResult = true;
         tag?.forEach {
-            var result = async{unregister(it) }.await()
+            var result = unregister(it)
             totalResult = totalResult && result
         }
         pushTagRegistrationListener?.pushRregistrationTagComplete(PushPluginsType.applicaster, totalResult)
