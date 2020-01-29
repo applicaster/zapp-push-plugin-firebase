@@ -83,34 +83,34 @@ class FirebasePushProvider : PushContract {
         return ""
     }
 
-    suspend private fun registerAll(tag: MutableList<String>?,
+    private suspend fun registerAll(tag: MutableList<String>?,
                                     pushTagRegistrationListener: PushTagRegistrationI?){
         var totalResult = true;
         tag?.forEach {
-            var result = register(it)
+            val result = register(it)
             totalResult = totalResult && result
         }
         pushTagRegistrationListener?.pushRregistrationTagComplete(PushPluginsType.applicaster, totalResult)
     }
 
-    suspend private fun register(topic : String): Boolean =
+    private suspend fun register(topic : String): Boolean =
             suspendCoroutine { cont ->
                 FirebaseMessaging.getInstance().subscribeToTopic(topic).addOnCompleteListener { task ->
                     cont.resume(task.isSuccessful)
                 }
             }
 
-    suspend private fun unregisterAll(tag: MutableList<String>?,
+    private suspend fun unregisterAll(tag: MutableList<String>?,
                                       pushTagRegistrationListener: PushTagRegistrationI?){
         var totalResult = true;
         tag?.forEach {
-            var result = unregister(it)
+            val result = unregister(it)
             totalResult = totalResult && result
         }
         pushTagRegistrationListener?.pushRregistrationTagComplete(PushPluginsType.applicaster, totalResult)
     }
 
-    suspend private fun unregister(topic : String): Boolean =
+    private suspend fun unregister(topic : String): Boolean =
             suspendCoroutine { cont ->
                 FirebaseMessaging.getInstance().unsubscribeFromTopic(topic).addOnCompleteListener { task ->
                     cont.resume(task.isSuccessful)

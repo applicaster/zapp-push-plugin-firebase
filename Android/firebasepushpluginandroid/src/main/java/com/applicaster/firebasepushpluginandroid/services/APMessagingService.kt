@@ -57,6 +57,11 @@ class APMessagingService : FirebaseMessagingService() {
         Log.e(TAG, "Received error: $msgId")
     }
 
+    override fun onNewToken(token: String) {
+        super.onNewToken(token)
+        Log.i(TAG, "onTokenRefresh")
+    }
+
     private fun processMessageSync(message: RemoteMessage?) {
         var title: String? = ""
         var body: String? = ""
@@ -77,11 +82,11 @@ class APMessagingService : FirebaseMessagingService() {
         }
         val notificationFactory = DefaultNotificationFactory(applicationContext)
         val pushMsg = PushMessage(
-            body = body ?: "" ,
-            title = title ?: "",
-            tag = tag ?: "",
-            contentText = body ?: "",
-            messageId = message?.messageId ?: ""
+            body = body.orEmpty() ,
+            title = title.orEmpty(),
+            tag = tag.orEmpty(),
+            contentText = body.orEmpty(),
+            messageId = message?.messageId.orEmpty()
         )
         notify(notificationFactory, pushMsg)
     }
