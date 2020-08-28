@@ -1,6 +1,6 @@
 # This repo is DEPRECATED!!
 
-Plugin migrate to monorepo: https://github.com/applicaster/Zapp-Frameworks
+Plugin has been migrated to monorepo: https://github.com/applicaster/Zapp-Frameworks
 
 # zapp-push-plugin-firebase
 
